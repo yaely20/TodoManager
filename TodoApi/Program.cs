@@ -95,5 +95,5 @@ using (var scope = app.Services.CreateScope())
         dbContext.SaveChanges();
     }
 }
-
+app.MapGet("/",()=>"hiii everyone");
 app.Run();
