@@ -1,0 +1,27 @@
+# Ignore build files for C# project
+bin/
+obj/
+
+# Ignore Visual Studio specific files
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Ignore Node.js dependencies
+node_modules/
+
+# Ignore React build files
+build/
+
+# Ignore package lock files in React
+package-lock.json
+
+# Ignore log files
+*.log
+
+# Ignore environment files
+.env
