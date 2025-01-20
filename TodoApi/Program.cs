@@ -25,11 +25,9 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+
 
 app.UseCors();
 
@@ -86,14 +84,14 @@ using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<ToDoDbContext>();
     dbContext.Database.EnsureCreated();
-    if (!dbContext.Items.Any())
-    {
-        dbContext.Items.AddRange(
-            new Item { Name = "Task 1", IsComplete = false },
-            new Item { Name = "Task 2", IsComplete = true }
-        );
-        dbContext.SaveChanges();
-    }
+    // if (!dbContext.Items.Any())
+    // {
+    //     dbContext.Items.AddRange(
+    //         new Item { Name = "Task 1", IsComplete = false },
+    //         new Item { Name = "Task 2", IsComplete = true }
+    //     );
+    //     dbContext.SaveChanges();
+    // }
 }
 app.MapGet("/",()=>"hiii everyone");
 app.Run();
