@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // הגדרת DbContext
 builder.Services.AddDbContext<ToDoDbContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("ToDoDB"),
-        new MySqlServerVersion(new Version(8, 0, 32))));
+        new MySqlServerVersion(new Version(8, 0, 40))));
 
 // הוספת שירותי CORS
 builder.Services.AddCors(options =>
@@ -84,14 +84,14 @@ using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<ToDoDbContext>();
     dbContext.Database.EnsureCreated();
-    // if (!dbContext.Items.Any())
-    // {
-    //     dbContext.Items.AddRange(
-    //         new Item { Name = "Task 1", IsComplete = false },
-    //         new Item { Name = "Task 2", IsComplete = true }
-    //     );
-    //     dbContext.SaveChanges();
-    // }
+    if (!dbContext.Items.Any())
+    {
+        dbContext.Items.AddRange(
+            new Item { Name = "Task 1", IsComplete = false },
+            new Item { Name = "Task 2", IsComplete = true }
+        );
+        dbContext.SaveChanges();
+    }
 }
 app.MapGet("/",()=>"hiii everyone");
 app.Run();
